@@ -47,11 +47,12 @@ def create_theme():
 	theme = json.load(open("theme.json", "r"))
 	for k in theme["colors"]:
 		v = theme["colors"][k]
-		if v in colors["colors"]: theme["colors"][k] = hex_to_rgb(colors["colors"][v])
-		elif v in colors["special"]: theme["colors"][k] = hex_to_rgb(colors["special"][v])
-		elif v in keywords: theme["colors"][k] = hex_to_rgb(keywords[v])
-		elif v.startswith("#"): theme["colors"][k] = hex_to_rgb(v)
-		else: raise Exception("Property " + k + " in theme has unexpected value " + v)
+		if type(v) is not dict:
+			if v in colors["colors"]: theme["colors"][k] = hex_to_rgb(colors["colors"][v])
+			elif v in colors["special"]: theme["colors"][k] = hex_to_rgb(colors["special"][v])
+			elif v in keywords: theme["colors"][k] = hex_to_rgb(keywords[v])
+			elif v.startswith("#"): theme["colors"][k] = hex_to_rgb(v)
+			else: raise Exception("Property " + k + " in theme has unexpected value " + v)
 	
 	return theme
 
@@ -64,7 +65,7 @@ if cmd_opt == "-h" or cmd_opt == "--help" or cmd_opt == "h" or cmd_opt == "help"
 	print("  ff      Open the Firefox Color URL in default browser (probably Firefox)")
 	print("  tb      Open a message containing the URL in Thunderbird (thunderbird must be in PATH, and should already be open)")
 	print()
-	print("If a Firefox Color URL is passed as the argument, it will be decoded into JSON as a base to build your own theme config off of.")
+	print("If a Firefox Color URL is passed as the argument, it will be decoded into JSON as a base for your own theme config.")
 	exit()
 elif cmd_opt.startswith("https://color.firefox.com/?theme="):
 	print(cmd_opt[33:])
