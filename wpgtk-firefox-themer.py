@@ -44,7 +44,7 @@ def create_theme():
 	keywords = {} if len(keywords_config.sections()) == 0 else { k: keywords_config["default"][k] for k in keywords_config["default"] }
 	colors = json.load(open(expanduser("~/.cache/wal/colors.json"), "r"))
 
-	theme = json.load(open("theme.json", "r"))
+	theme = json.load(open(os.path.join(sys.path[0], "theme.json"), "r"))
 	for k in theme["colors"]:
 		v = theme["colors"][k]
 		if type(v) is not dict:
