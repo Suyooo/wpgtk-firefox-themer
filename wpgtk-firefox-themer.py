@@ -62,6 +62,8 @@ if cmd_opt == "-h" or cmd_opt == "--help" or cmd_opt == "h" or cmd_opt == "help"
 	print("Modes:")
 	print("  url     Output the Firefox Color URL to stdout")
 	print("  ff      Open Firefox Color in default browser (probably Firefox)")
+	print("  tb      Open a message containing the URL in Thunderbird (thunderbird must be in PATH, and should already be open)")
+	print()
 	print("If a Firefox Color URL is passed as the argument, it will be decoded into JSON as a base to build your own theme config off of.")
 	exit()
 elif cmd_opt.startswith("https://color.firefox.com/?theme="):
@@ -84,6 +86,6 @@ else:
 			emlGenerator = email.generator.Generator(tmp)
 			emlGenerator.flatten(msg)
 			tmp.flush()
-			os.system("thunderbird " + tmp.name)
+			os.system("thunderbird -file " + tmp.name)
 	else:
 		raise Exception()
