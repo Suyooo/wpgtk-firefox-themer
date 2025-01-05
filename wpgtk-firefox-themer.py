@@ -89,4 +89,4 @@ else:
 			tmp.flush()
 			os.system("thunderbird -file " + tmp.name)
 	else:
-		raise Exception()
+		raise Exception("Unknown mode. Check --help for allowed modes")

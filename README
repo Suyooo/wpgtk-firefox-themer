@@ -26,6 +26,8 @@ Since you can't just open a browser tab in Thunderbird or install Firefox addons
 
 If you have set Thunderbird to open links in your browser, consider installing the [Open Tab addon](https://addons.thunderbird.net/en-US/thunderbird/addon/open-tab/), which adds a context menu option to open a browser tab in Thunderbird when right-clicking a link.
 
+You should open Thunderbird before running this script with the `tb` argument - otherwise, the script will block until you quit out of Thunderbird instead of just opening the message window and moving on.
+
 ## Configuration
 
 You can edit the `theme.json` file to change which element uses which color from the scheme. Every key in the `colors` object should have a string value, which can be:
