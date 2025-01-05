@@ -14,14 +14,14 @@
 				"ntp_text": "color8",
 				"popup_border": "color1",
 				"popup_highlight_text": "color0",
-				"popup_highlight": "color7",
-				"sidebar_highlight_text": "color8",
+				"popup_highlight": "color1",
+				"sidebar_highlight_text": "color0",
 				"sidebar_highlight": "color1",
 				"sidebar_text": "color0",
 				"sidebar": "color7",
 				"toolbar_field_border_focus": "color7",
 				"toolbar_field_highlight_text": "color0",
-				"toolbar_field_highlight": "color7"
+				"toolbar_field_highlight": "color1"
 		},
 		"images": {
 				"additional_backgrounds": [ "./bg-009.svg" ],
