@@ -44,47 +44,16 @@ def create_theme():
 	keywords = { k: keywords_config["default"][k] for k in keywords_config["default"] }
 	colors = json.load(open(expanduser("~/.cache/wal/colors.json"), "r"))
 
-	bg = hex_to_rgb(colors["special"]["background"])
-	text_bg = hex_to_rgb(keywords["text_bg"])
-	dark = hex_to_rgb(colors["colors"]["color1"])
-	text_dark = hex_to_rgb(keywords["text_hl"])
-	bright = hex_to_rgb(colors["colors"]["color9"])
-	text_bright = hex_to_rgb(keywords["text_hl"])
-
-	white = { "r": 255, "g": 255, "b": 255 }
-	black = { "r": 0, "g": 0, "b": 0 }
-
-	return {
-		 "colors": {
-					"toolbar": bright,
-					"toolbar_text": text_bright,
-					"frame": dark,
-					"tab_text": text_bright,
-					"tab_background_text": bg,
-					"toolbar_field": white,
-					"toolbar_field_text": black,
-					"tab_line": dark,
-					"popup": white,
-					"popup_text": black,
-					"ntp_background": dark,
-					"ntp_text": text_dark,
-					"popup_border": dark,
-					"popup_highlight_text": text_bright,
-					"popup_highlight": bright,
-					"sidebar_highlight_text": text_dark,
-					"sidebar_highlight": dark,
-					"sidebar_text": text_bright,
-					"sidebar": bright,
-					"toolbar_field_border_focus": bright,
-					"toolbar_field_highlight_text": text_bright,
-					"toolbar_field_highlight": bright
-			},
-			"images": {
-					"additional_backgrounds": [ "./bg-009.svg" ],
-					"custom_backgrounds": []
-			},
-			"title": "wpgtk-firefox-themer"
-	}
+	theme = json.load(open("theme.json", "r"))
+	for k in theme["colors"]:
+		v = theme["colors"][k]
+		if v in colors["colors"]: theme["colors"][k] = hex_to_rgb(colors["colors"][v])
+		elif v in colors["special"]: theme["colors"][k] = hex_to_rgb(colors["special"][v])
+		elif v in keywords: theme["colors"][k] = hex_to_rgb(keywords[v])
+		elif v.startswith("#"): theme["colors"][k] = hex_to_rgb(v)
+		else: raise Exception("Property " + k + " in theme has unexpected value " + v)
+	
+	return theme
 
 cmd_opt = "url" if len(sys.argv)==1 else sys.argv[1]
 if cmd_opt == "-h" or cmd_opt == "--help" or cmd_opt == "h" or cmd_opt == "help":
