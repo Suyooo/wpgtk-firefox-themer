@@ -15,9 +15,10 @@
 #		You should have received a copy of the GNU General Public License
 #		along with this program.	If not, see <https://www.gnu.org/licenses/>.
 
-import sys, configparser, json
+import sys, os
+import configparser, json
 import msgpack, lzma, base64
-import webbrowser
+import webbrowser, email.generator, email.mime.multipart, email.mime.text, tempfile
 from os.path import expanduser
 
 def json_url_encode(theme):
@@ -103,5 +104,17 @@ else:
 		print(url)
 	elif cmd_opt == "ff":
 		webbrowser.open(url)
+	elif cmd_opt == "tb":
+		msg = email.mime.multipart.MIMEMultipart()
+		msg["To"] = "you@computer"
+		msg["From"] = "wpgtk-firefox-themer@computer"
+		msg["Subject"] = "Here's your Firefox Color theme!"
+		msg.attach(email.mime.text.MIMEText(url, "plain"))
+		
+		with tempfile.NamedTemporaryFile("w", suffix=".eml", delete_on_close=False) as tmp:
+			emlGenerator = email.generator.Generator(tmp)
+			emlGenerator.flatten(msg)
+			tmp.flush()
+			os.system("thunderbird " + tmp.name)
 	else:
 		raise Exception()
