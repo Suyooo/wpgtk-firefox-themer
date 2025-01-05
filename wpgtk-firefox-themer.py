@@ -40,8 +40,8 @@ def hex_to_rgb(h):
 
 def create_theme():
 	keywords_config = configparser.ConfigParser()
-	keywords_config.read(expanduser("~/.config/wpg/keywords.conf"))
-	keywords = { k: keywords_config["default"][k] for k in keywords_config["default"] }
+	keywords_config.read(expanduser("~/.config/wpg/keyworfddfds.conf"))
+	keywords = {} if len(keywords_config.sections()) == 0 else { k: keywords_config["default"][k] for k in keywords_config["default"] }
 	colors = json.load(open(expanduser("~/.cache/wal/colors.json"), "r"))
 
 	theme = json.load(open("theme.json", "r"))
