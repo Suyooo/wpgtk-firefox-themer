@@ -30,10 +30,10 @@ You should open Thunderbird before running this script with the `tb` argument - 
 
 ## Configuration
 
-You can edit the `theme.json` file to change which element uses which color from the scheme. Every key in the `colors` object should have a string value, which can be:
-- `color0` to `color15`, `background`, `foreground` or `cursor`, which are replaced with the corresponding color from your scheme
-- Any keyword defined in wpgtk that resolves to a hex color code (`#xxxxxx`)
-- A fixed color as either a hex code (`#xxxxxx`) or as a dictionary as used in the Firefox theme itself (`{"r": x, "g": x, "b": x}`)
+You can edit the `theme.json` file to change which element uses which color from the scheme. Every key in the `colors` object can have a value of:
+- `"color0"` to `"color15"`, `"background"`, `"foreground"` or `"cursor"`, which are replaced with the corresponding color from your scheme
+- Any keyword defined in wpgtk that resolves to a hex color code (`"#xxxxxx"`)
+- A fixed color as either a hex code (`"#xxxxxx"`), or as an object with R/G/B properties, as used in the Firefox theme itself (`{"r": x, "g": x, "b": x}`)
 
 The values for the `images` and `title` will be carried over to the theme without changes.
 
