@@ -18,7 +18,7 @@
 import sys, os
 import configparser, json
 import msgpack, lzma, base64
-import webbrowser, email.generator, email.mime.multipart, email.mime.text, tempfile
+import webbrowser, email.generator, email.mime.multipart, email.mime.text, tempfile, time
 from os.path import expanduser
 
 def json_url_encode(theme):
@@ -88,5 +88,6 @@ else:
 			emlGenerator.flatten(msg)
 			tmp.flush()
 			os.system("thunderbird -file " + tmp.name)
+			time.sleep(5)
 	else:
 		raise Exception("Unknown mode. Check --help for allowed modes")
